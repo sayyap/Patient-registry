@@ -1,0 +1,156 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+// Form data for the first form (Personal Information)
+const formData1 = ref({
+  name: '',
+  date_of_birth: '',
+  national_id: '',
+  address_id: '',
+});
+
+// Form data for the second form (Address Information)
+const formData2 = ref({
+  island_id: '',
+  street: '',
+  city: '',
+  house_name: '',
+});
+
+// Submit handlers for both forms
+const submitForm1 = () => {
+  console.log('Form 1 Submitted:', formData1.value);
+  // Here you can handle form submission for form 1, such as sending data to an API or processing it.
+};
+
+const submitForm2 = () => {
+  console.log('Form 2 Submitted:', formData2.value);
+  // Here you can handle form submission for form 2, such as sending data to an API or processing it.
+};
+</script>
+
+<template>
+  <div class="form-container">
+    <!-- Form 1: Personal Information -->
+    <div class="form-section">
+      <h2>Personal Information</h2>
+      <form @submit.prevent="submitForm1">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" v-model="formData1.name" placeholder="Enter your name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="date_of_birth">Date of Birth</label>
+          <input type="date" id="date_of_birth" v-model="formData1.date_of_birth" required />
+        </div>
+
+        <div class="form-group">
+          <label for="national_id">National ID</label>
+          <input type="text" id="national_id" v-model="formData1.national_id" placeholder="Enter your National ID" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address_id">Address ID</label>
+          <input type="text" id="address_id" v-model="formData1.address_id" placeholder="Enter your Address ID" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+
+    <!-- Form 2: Address Information -->
+    <div class="form-section">
+      <h2>Address Information</h2>
+      <form @submit.prevent="submitForm2">
+        <div class="form-group">
+          <label for="island_id">Island ID</label>
+          <input type="text" id="island_id" v-model="formData2.island_id" placeholder="Enter Island ID" required />
+        </div>
+
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input type="text" id="street" v-model="formData2.street" placeholder="Enter Street Name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" v-model="formData2.city" placeholder="Enter City" required />
+        </div>
+
+        <div class="form-group">
+          <label for="house_name">House Name</label>
+          <input type="text" id="house_name" v-model="formData2.house_name" placeholder="Enter House Name" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+}
+
+.form-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+input:focus {
+  outline: none;
+  border-color: #5cb85c;
+}
+
+button.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.submit-btn:hover {
+  background-color: #4cae4c;
+}
+</style>
