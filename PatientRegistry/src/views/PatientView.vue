@@ -2,14 +2,17 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-const apiUrl = 'https://localhost'; // Change this to your backend URL
+const apiUrl = 'http://localhost:8000/api'; // Change this to your backend URL
 
 // Axios client instance
 const apiClient = axios.create({
   baseURL: apiUrl,
   headers: {
     'Content-Type': 'application/json',
+    'Accept': 'application/json'
+
   },
+  withCredentials: true
 });
 
 // Patients data
@@ -18,7 +21,7 @@ const patients = ref<any[]>([]);
 // Fetch all patients from the backend
 const fetchPatients = async () => {
   try {
-    const response = await apiClient.get('/api/patients');
+    const response = await axios.get('http://localhost:8000/api/patients');
     patients.value = response.data.data;
   } catch (error) {
     console.error('Error fetching patients:', error);

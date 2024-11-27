@@ -7,8 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PatientRegistryResource extends JsonResource
 {
-    private mixed $id;
-    private mixed $name;
+    // private mixed $id;
+    // private mixed $name;
 
     /**
      * Transform the resource into an array.

@@ -31,18 +31,18 @@ class PatientRegistryController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'date_of_birth' => 'required|date',
-            'national_id' => 'required|string|max:50|unique:patients',
+            'national_id' => 'required|string|max:50|unique:patient_registry',
             'address' => 'required|array', // Address is an array
             'address.island_id' => 'required|string|max:50',
             'address.street' => 'required|string|max:255',
             'address.city' => 'required|string|max:255',
             'address.house_name' => 'required|string|max:255',
         ]);
-
+   
 
         $address = Address::create([
             'island_id' => $validatedData['address']['island_id'],
@@ -50,6 +50,8 @@ class PatientRegistryController extends Controller
             'city' => $validatedData['address']['city'],
             'house_name' => $validatedData['address']['house_name'],
         ]);
+
+        // dd($address);
 
 
         $patient = PatientRegistry::create([
@@ -59,7 +61,7 @@ class PatientRegistryController extends Controller
             'address_id' => $address->id,  // Store the Address ID
         ]);
 
-
+    
         return new PatientRegistryResource($patient);
     }
 
@@ -70,8 +72,6 @@ class PatientRegistryController extends Controller
     {
 
         $patient = PatientRegistry::findOrFail($id);
-
-
         return new PatientRegistryResource($patient);
     }
 
